@@ -84,6 +84,7 @@ const Container = styled.div`
   `;
 const Navitem = styled(NavLink)`
   text-decoration: none;
+  font-size: 20px;
   color: white;
   position: relative;
  &::after{

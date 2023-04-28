@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoContext from "./todocontext";
 const TodoState = (props) => {
+    const [todo, settodo] = useState([])
   const state = {
     name: "roshan",
     class: 23,
   };
-  const getAllTodos = async(title,description,tag) => {
+  const getAllTodos = async() => {
     const response = await fetch('http://localhost:8080/api/todos/getalltodos',{
         method:"GET",
         headers:{
-            "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NGEwZWZhMDI0NWNkYjM2NmZjN2UyNCIsImlhdCI6MTY4MjU3NTA5OH0.4BP8wm1X9lg8lggVTs4sv6pbvSRh94R2Qbp7HJ_0YNM"
-        }
+            "auth-token":localStorage.getItem('token')
+        },
     })
     const json=await response.json()
+    // console.log(json.todos);
+    settodo(json.todos)
     console.log(json);
 
   };
@@ -29,7 +32,7 @@ const TodoState = (props) => {
 
   return (
     <TodoContext.Provider
-      value={{ state, getAllTodos, addTodo, deleteTheTodo,updateTheTodo }}
+      value={{ todo, getAllTodos, addTodo, deleteTheTodo,updateTheTodo }}
     >
       {props.children}
     </TodoContext.Provider>

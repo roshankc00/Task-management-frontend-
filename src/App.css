@@ -6,3 +6,12 @@ input{
     font-size: 20px;
     padding: 5px 10px;
 }
+
+textarea{
+    width: 300px;
+    height: 100px;
+    border-radius:5px ;
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 5px 10px;
+}

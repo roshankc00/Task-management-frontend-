@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Todos from './Todos'
 import styled from 'styled-components'
+import UpdateTodos from './UpdateTodos'
+import todoContext from '../context/todoscontext/todocontext'
 
 const Home = () => {
+  const {todo,getAllTodos}=useContext(todoContext)
+  useEffect(()=>{
+    getAllTodos()
+    // console.log("todo",todo);
+    console.log("sds",todo);
+
+  },[])
   return (
     <Wrapper>
-      <Todos/>
-      <Todos/>
-      <Todos/>
-      <Todos/>
-      <Todos/>
-      <Todos/>
-      <Todos/>
-      <Todos/>
+      {
+        todo.map((item)=>{
+          return <Todos title={item._id} description={item.description} tag={item.tag}/>
+       })
+      }
     </Wrapper>
   )
 }
