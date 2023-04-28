@@ -1,9 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import todoContext from '../context/todoscontext/todocontext'
 const About = () => {
- const a=useContext(todoContext)
+ const {state,getAllTodos,addTodo,deleteTheTodo}=useContext(todoContext)
+ useEffect(()=>{
+  addTodo()
+  deleteTheTodo()
+ })
   return (
-    <div>{a.name} and {a.class} </div>
+    <div>{state.name} and {state.class} </div>
   )
 }
 

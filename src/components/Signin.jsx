@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
+import authContext from '../context/authContext/authContext'
 
 const Signin = () => {
+  const {signinUser}=useContext(authContext)
   const [auth, setauth] = useState({
     name:"",
     email:"",
@@ -9,8 +11,8 @@ const Signin = () => {
   })   
   const submitHandler=(e)=>{
     e.preventDefault()
-    // setauth({...auth,[e.target.name]:e.target.value})
-    console.log(auth);
+    signinUser(auth.name,auth.email,auth.password)
+
     
   }
   const onChangeHandler=(e)=>{
@@ -21,7 +23,7 @@ const Signin = () => {
     <>
     <Wrapper>
       <Formwaapper onSubmit ={submitHandler}>
-      <Header> Signin form</Header>
+      <Header> Signin form </Header>
         <div>
 
         <input type='text' name='name' id='name'placeholder='enter the name' value={auth.name} onChange={onChangeHandler} required/>
