@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import AutoDeleteIcon from '@mui/icons-material/AutoDelete';
+import EditIcon from '@mui/icons-material/Edit';
+import todoContext from "../context/todoscontext/todocontext";
+import { useNavigate } from "react-router-dom";
+
+
 const Todos = (props) => {
+  const navigate=useNavigate()
+  const {deleteTheTodo,getupdatedId}=useContext(todoContext)
+  const handleDelete=()=>{
+deleteTheTodo(props.todo._id)
+  }
+  const handleUpdate=()=>{
+    navigate('/updateme')
+    getupdatedId(props.todo._id)
+    
+
+    
+  }
   return (
     <Container>
       <Card>
         <Tag>{props.tag}</Tag>
         <Title>{props.title}</Title>
         <Description> {props.description}</Description>
+        <IconWapper>
+
+      <button onClick={handleDelete}><AutoDeleteIcon/> </button>
+      <button onClick={handleUpdate}> <EditIcon/> </button>
+        </IconWapper>
+
       </Card>
+
     </Container>
   );
 };
@@ -41,7 +66,6 @@ const Title = styled.h6`
   font-weight: 300;
   margin-top: 60px;
   background:cover;
-  width: 200px;
 `;
 const Description = styled.div`
   padding: 0 10px;
@@ -58,3 +82,8 @@ const Tag = styled.div`
   background-color: blue;
   border-bottom-left-radius: 10px;
 `;
+const IconWapper=styled.div`
+  display: flex;
+  gap: 10px;
+  margin: 10px 10px;
+`

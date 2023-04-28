@@ -10,6 +10,7 @@ import Signup from './components/Signup'
 import Signin from './components/Signin'
 import TodoState from './context/todoscontext/TodoState'
 import AuthenticationState from './context/authContext/AuthenticationState'
+import UpdateTodos from './components/UpdateTodos'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -25,6 +26,7 @@ function App() {
         <Route path='/about' element={<About/>}/>
         <Route path='/login' element={<Signup/>}/>
         <Route path='/signin' element={<Signin/>}/>
+        <Route path='/updateme' element={<UpdateTodos/>}/>
         
       </Routes>
       </BrowserRouter>

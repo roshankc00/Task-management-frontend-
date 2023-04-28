@@ -1,19 +1,38 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
+import todoContext from '../context/todoscontext/todocontext'
 
 const Addtodos = () => {
+    const {addTodo}=useContext(todoContext)
+    const [todo, settodo] = useState({
+        tag:"",
+        title:"",
+        description:""
+    })
+    const handleTodoSubmit=(e)=>{
+        e.preventDefault()
+           console.log("k xa  ");
+           addTodo(todo.tag,todo.title,todo.description)
+        console.log(todo);
+    }
+    const onChangeHandler=(e)=>{
+        settodo({...todo,[e.target.name]:e.target.value})
+    }
+
   return (
     <Wapper>
-        <FormWapper>
-            <div>
-                <input type='text' name='title'placeholder='enter the title'/>
+        <FormWapper onSubmit={handleTodoSubmit}>
+            <h1 style={{textAlign:"center"}}> Add todos</h1>
+        <div>
+                <input type='text' name='tag' placeholder='enter the tags' value={todo.tag} onChange={onChangeHandler} maxLength={4} required/>
             </div>
             <div>
-                <textarea  name='description' placeholder='enter the  description' rows={4} cols={20}/>
+                <input type='text' name='title'placeholder='enter the title'value={todo.title} onChange={onChangeHandler} maxLength={5} required/>
             </div>
             <div>
-                <input type='text' name='tag' placeholder='enter the tags'/>
+                <textarea  name='description' placeholder='enter the  description' rows={4} cols={20} value={todo.description} maxLength={5} onChange={onChangeHandler} required/>
             </div>
+           
             <Button type='submit'> submit me </Button>
         </FormWapper>
     </Wapper>
@@ -34,6 +53,7 @@ margin: 50px;
 position: absolute;
 left: 50%;
 transform: translateX(-50%);
+overflow: hidden;
 
     
 `

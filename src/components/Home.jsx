@@ -1,25 +1,45 @@
 import React, { useContext, useEffect } from 'react'
 import Todos from './Todos'
 import styled from 'styled-components'
-import UpdateTodos from './UpdateTodos'
 import todoContext from '../context/todoscontext/todocontext'
-
+import Addtodos from './Addtodos'
+import { useNavigate } from 'react-router-dom'
+import Signin from './Signin'
 const Home = () => {
-  const {todo,getAllTodos}=useContext(todoContext)
+  const navigate=useNavigate()
+  if(localStorage.getItem('token')){
+
+  }else{
+    navigate('/signin')
+  }
+
+  const {todo,getAllTodos,deleteTheTodo}=useContext(todoContext)
   useEffect(()=>{
-    getAllTodos()
-    // console.log("todo",todo);
-    console.log("sds",todo);
+    if(localStorage.getItem('token')){
+
+      getAllTodos()
+    }
+    else{
+      navigate('/signin')
+    }
 
   },[])
   return (
+    <>
+
+    <div>
+    <div>
+      <Addtodos/>
+    </div>
     <Wrapper>
       {
         todo.map((item)=>{
-          return <Todos title={item._id} description={item.description} tag={item.tag}/>
-       })
+          return <Todos key={item._id} todo={item} title={item.title} description={item.description} tag={item.tag} />
+        })
       }
     </Wrapper>
+      </div>
+      </>
   )
 }
 
@@ -29,7 +49,9 @@ const Wrapper=styled.div `
 padding: auto;
 margin: auto;
 position: absolute;
+
 left: 50%;
+top: 80%;
 transform: translateX(-50%);
 gap: 20px;
 display: grid;
