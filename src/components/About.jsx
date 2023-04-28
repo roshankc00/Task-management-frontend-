@@ -1,8 +1,9 @@
-import React from 'react'
-
+import React, { useContext } from 'react'
+import todoContext from '../context/todoscontext/todocontext'
 const About = () => {
+ const a=useContext(todoContext)
   return (
-    <div>About</div>
+    <div>{a.name} and {a.class} </div>
   )
 }
 

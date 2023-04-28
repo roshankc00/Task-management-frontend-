@@ -8,10 +8,14 @@ import About from './components/About'
 import { Login } from '@mui/icons-material'
 import Signup from './components/Signup'
 import Signin from './components/Signin'
+import TodoState from './context/todoscontext/TodoState'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
+    <>
+      <TodoState>
+
       <BrowserRouter>
       <Navbar/>
       <Routes>
@@ -22,6 +26,8 @@ function App() {
         
       </Routes>
       </BrowserRouter>
+      </TodoState>
+    </>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
@@ -25,7 +25,7 @@ const Navbar = () => {
           </Button>
         ) : (
           ""
-        )}
+          )}
       </Wrapper>
       {show ? (
         <Sidebar>
@@ -33,13 +33,14 @@ const Navbar = () => {
           <CloseIcon/>
           </SideButton>
 
+          <Navitem to="/">Home</Navitem>
           <Navitem to="/about">About</Navitem>
           <Navitem to="/login">Login</Navitem>
           <Navitem to="/signin">Signin</Navitem>
         </Sidebar>
       ) : (
         ""
-      )}
+        )}
     </>
   );
 };
@@ -81,7 +82,7 @@ const Container = styled.div`
     display: none;
   }
   `;
-const Navitem = styled(Link)`
+const Navitem = styled(NavLink)`
   text-decoration: none;
   color: white;
   position: relative;
